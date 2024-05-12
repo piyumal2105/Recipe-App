@@ -89,9 +89,9 @@ function RecipesPage() {
               imgAlt={category.strCategory}
               style={{ padding: "20px" }}
             >
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {category.strCategory}
-              </h5>
+              </h1>
               <Button
                 style={{ backgroundColor: "#fe5b85" }}
                 onClick={() =>

@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card } from "flowbite-react";
-import { Button, Modal } from "flowbite-react";
+import { Card, Button, Modal } from "flowbite-react";
+import toast from "react-hot-toast";
+import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 
 function FavoutiteRecipesPage() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -10,6 +11,7 @@ function FavoutiteRecipesPage() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedCategoryDescription, setSelectedCategoryDescription] =
     useState("");
+  const [deletedRecipeId, setDeletedRecipeId] = useState(null);
 
   const handleButtonClick = (description) => {
     setSelectedCategoryDescription(description);
@@ -31,7 +33,18 @@ function FavoutiteRecipesPage() {
     };
 
     fetchFavoriteRecipes();
-  }, []);
+  }, [deletedRecipeId]); // Refresh favorite recipes after deletion
+
+  const handleDeleteClick = async (_id) => {
+    try {
+      await axios.delete(`http://localhost:3001/receipe/delete/${_id}`);
+      setDeletedRecipeId(_id);
+      toast.success("Successfully remove from the favorite!");
+    } catch (error) {
+      console.error("Error deleting recipe:", error);
+      toast.error("Error remove from favourite!");
+    }
+  };
 
   return (
     <div>
@@ -53,8 +66,12 @@ function FavoutiteRecipesPage() {
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {recipe.strCategory}
                 </h1>
+                <button onClick={() => handleDeleteClick(recipe._id)}>
+                  <MdOutlineRemoveCircleOutline
+                    style={{ fontSize: "30px", color: "#fe5b85" }}
+                  />
+                </button>
               </div>
-
               <Button
                 style={{ backgroundColor: "#fe5b85" }}
                 onClick={() => handleButtonClick(recipe.strCategoryDescription)}

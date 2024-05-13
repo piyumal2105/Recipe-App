@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
+import toast from "react-hot-toast";
 import { MdFavoriteBorder } from "react-icons/md";
 
 function RecipesPage() {
@@ -43,12 +44,10 @@ function RecipesPage() {
         strCategoryThumb: strCategoryThumb,
         strCategoryDescription: strCategoryDescription,
       });
-      // toast.success("Recipe added to favorites!");
-      alert("Recipe added to favorites!");
+      toast.success("Successfully added to the favorite!");
     } catch (error) {
       console.error("Failed to add to favorites:", error);
-      // toast.error("Failed to add to favorites.");
-      alert("Recipe added to favorites!");
+      toast.error("Error added to favourite!");
     }
   };
 

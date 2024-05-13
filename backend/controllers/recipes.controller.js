@@ -46,6 +46,23 @@ export const getAllFavourite = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Failed to fetch product", error: error.message });
+      .json({ message: "Failed to fetch Receipe", error: error.message });
+  }
+};
+
+export const removeFavourite = async (req, res) => {
+  const _id = req.params.id;
+
+  try {
+    const receipeRemove = await Receipe.findByIdAndDelete(_id);
+
+    if (!receipeRemove) {
+      // If the product is not found, send a 404 status code with a message
+      return res.status(404).json({ message: "Receipe not found" });
+    }
+
+    res.status(200).json({ message: "Receipe deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete Receipe", error });
   }
 };

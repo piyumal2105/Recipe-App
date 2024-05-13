@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
+import { MdFavoriteBorder } from "react-icons/md";
 
 function RecipesPage() {
   const [categories, setCategories] = useState([]);
@@ -10,7 +11,7 @@ function RecipesPage() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedCategoryDescription, setSelectedCategoryDescription] =
     useState("");
-  const [activeFilter, setActiveFilter] = useState(null); // State to hold the active category ID filter
+  const [activeFilter, setActiveFilter] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -89,9 +90,17 @@ function RecipesPage() {
               imgAlt={category.strCategory}
               style={{ padding: "20px" }}
             >
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {category.strCategory}
-              </h1>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-44">
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {category.strCategory}
+                </h1>
+                <button>
+                  <MdFavoriteBorder
+                    style={{ fontSize: "30px", color: "#fe5b85" }}
+                  />
+                </button>
+              </div>
+
               <Button
                 style={{ backgroundColor: "#fe5b85" }}
                 onClick={() =>

@@ -1,6 +1,7 @@
+import Receipe from "../models/recipe.model.js";
 import axios from "axios";
 
-const recipeController = {
+export const recipeController = {
   fetchRecipesByCategory: async (req, res) => {
     try {
       const response = await axios.get(
@@ -20,4 +21,19 @@ const recipeController = {
   },
 };
 
-export default recipeController;
+export const addFavorite = async (req, res) => {
+  const { idCategory, strCategory, strCategoryThumb, strCategoryDescription } =
+    req.body;
+  try {
+    const newFavorite = new Receipe({
+      idCategory,
+      strCategory,
+      strCategoryThumb,
+      strCategoryDescription,
+    });
+    await newFavorite.save();
+    res.status(201).send("Recipe saved as favorite!");
+  } catch (error) {
+    res.status(500).send("Error saving the recipe: " + error.message);
+  }
+};

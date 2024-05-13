@@ -112,3 +112,26 @@ export const google = async (req, res, next) => {
     next(error);
   }
 };
+
+// export const logout = async (req, res, next) => {
+//   try {
+//     res.cookie("assess_token", "", {
+//       expires: new Date(0),
+//       httpOnly: true,
+//     });
+
+//     res.status(200, { message: "Successfully logout" });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+export const logout = async (req, res, next) => {
+  try {
+    res.clearCookie("assess_token"); // Clear the assess_token cookie
+
+    res.status(200).json({ message: "Successfully logged out" }); // Respond with a success message
+  } catch (error) {
+    next(error);
+  }
+};

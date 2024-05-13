@@ -22,16 +22,19 @@ export const recipeController = {
   },
 };
 
-//Add new receipes
+// Add new receipes
 export const addFavorite = async (req, res) => {
   const { idCategory, strCategory, strCategoryThumb, strCategoryDescription } =
     req.body;
+  console.log(req.user);
+
   try {
     const newFavorite = new Receipe({
       idCategory,
       strCategory,
       strCategoryThumb,
       strCategoryDescription,
+      userId: req.user, // Associate the recipe with the authenticated user
     });
     await newFavorite.save();
     res.status(201).send("Recipe saved as favorite!");
@@ -40,13 +43,13 @@ export const addFavorite = async (req, res) => {
   }
 };
 
-//View all receipes
+// View all receipes
 export const getAllFavourite = async (req, res) => {
   try {
-    const favouriteReceipe = await Receipe.find();
+    const favouriteReceipe = await Receipe.find({ userId: req.user }); // Only fetch recipes created by the authenticated user
     res.status(200).json(favouriteReceipe);
-    console.log(favouriteReceipe);
   } catch (error) {
+    // console.log(error.message)
     res
       .status(500)
       .json({ message: "Failed to fetch Receipe", error: error.message });

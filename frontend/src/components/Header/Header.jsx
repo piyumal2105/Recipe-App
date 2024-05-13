@@ -14,7 +14,7 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../../app/theme/theme.Slice.js";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 function Header() {
   const path = useLocation().pathname;
   const dispatch = useDispatch();
@@ -22,11 +22,18 @@ function Header() {
   const { theme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/");
-    window.location.reload();
+  const handleLogout = async () => {
+    try {
+      localStorage.clear();
+      await axios.post("http://localhost:3001/api/auth/logout");
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      //error alert
+      console.log(error.message);
+    }
   };
+
   return (
     <Navbar className="border-b-2">
       <Link

@@ -39,12 +39,16 @@ function RecipesPage() {
       strCategoryDescription,
     } = category;
     try {
-      await axios.post("http://localhost:3001/receipe/addfavourite", {
-        idCategory: idCategory,
-        strCategory: strCategory,
-        strCategoryThumb: strCategoryThumb,
-        strCategoryDescription: strCategoryDescription,
-      });
+      await axios.post(
+        "http://localhost:3001/receipe/addfavourite",
+        {
+          idCategory: idCategory,
+          strCategory: strCategory,
+          strCategoryThumb: strCategoryThumb,
+          strCategoryDescription: strCategoryDescription,
+        },
+        { withCredentials: true }
+      );
       toast.success("Successfully added to the favorite!");
     } catch (error) {
       console.error("Failed to add to favorites:", error);

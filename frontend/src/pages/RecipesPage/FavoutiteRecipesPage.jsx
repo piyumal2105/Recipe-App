@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Card, Button, Modal } from "flowbite-react";
 import toast from "react-hot-toast";
@@ -23,7 +23,8 @@ function FavoutiteRecipesPage() {
     const fetchFavoriteRecipes = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/receipe/favouriterecipe"
+          "http://localhost:3001/receipe/favouriterecipe",
+          { withCredentials: true }
         );
         setFavoriteRecipes(response.data); // Assuming response.data is an array of favorite recipes
         setLoading(false);

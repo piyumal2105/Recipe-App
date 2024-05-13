@@ -1,6 +1,7 @@
 import Receipe from "../models/recipe.model.js";
 import axios from "axios";
 
+//Get all categories from the api
 export const recipeController = {
   fetchRecipesByCategory: async (req, res) => {
     try {
@@ -21,6 +22,7 @@ export const recipeController = {
   },
 };
 
+//Add new receipes
 export const addFavorite = async (req, res) => {
   const { idCategory, strCategory, strCategoryThumb, strCategoryDescription } =
     req.body;
@@ -38,6 +40,7 @@ export const addFavorite = async (req, res) => {
   }
 };
 
+//View all receipes
 export const getAllFavourite = async (req, res) => {
   try {
     const favouriteReceipe = await Receipe.find();
@@ -50,13 +53,13 @@ export const getAllFavourite = async (req, res) => {
   }
 };
 
+//Remove receipe from favourite
 export const removeFavourite = async (req, res) => {
   const _id = req.params.id;
   try {
     const receipeRemove = await Receipe.findByIdAndDelete(_id);
 
     if (!receipeRemove) {
-      // If the product is not found, send a 404 status code with a message
       return res.status(404).json({ message: "Receipe not found" });
     }
 

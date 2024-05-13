@@ -29,6 +29,29 @@ function RecipesPage() {
     fetchCategories();
   }, []);
 
+  const handleFavoriteClick = async (category) => {
+    const {
+      idCategory,
+      strCategory,
+      strCategoryThumb,
+      strCategoryDescription,
+    } = category;
+    try {
+      await axios.post("http://localhost:3001/receipe/addfavourite", {
+        idCategory: idCategory,
+        strCategory: strCategory,
+        strCategoryThumb: strCategoryThumb,
+        strCategoryDescription: strCategoryDescription,
+      });
+      // toast.success("Recipe added to favorites!");
+      alert("Recipe added to favorites!");
+    } catch (error) {
+      console.error("Failed to add to favorites:", error);
+      // toast.error("Failed to add to favorites.");
+      alert("Recipe added to favorites!");
+    }
+  };
+
   const handleButtonClick = (description) => {
     setSelectedCategoryDescription(description);
     setOpenModal(true);
@@ -38,7 +61,6 @@ function RecipesPage() {
     setActiveFilter(id);
   };
 
-  // Filter categories based on activeFilter
   const displayedCategories = activeFilter
     ? categories.filter((category) => category.idCategory === activeFilter)
     : categories;
@@ -94,7 +116,7 @@ function RecipesPage() {
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {category.strCategory}
                 </h1>
-                <button>
+                <button onClick={() => handleFavoriteClick(category)}>
                   <MdFavoriteBorder
                     style={{ fontSize: "30px", color: "#fe5b85" }}
                   />

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Card, Button, Modal } from "flowbite-react";
 import toast from "react-hot-toast";
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
+import { Spinner } from "flowbite-react";
 
 function FavoutiteRecipesPage() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -49,7 +50,7 @@ function FavoutiteRecipesPage() {
   return (
     <div>
       {loading ? (
-        <p>Loading...</p>
+        <Spinner aria-label="Default status example" />
       ) : (
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"

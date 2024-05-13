@@ -5,6 +5,7 @@ import { Card } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
 import toast from "react-hot-toast";
 import { MdFavoriteBorder } from "react-icons/md";
+import { Spinner } from "flowbite-react";
 
 function RecipesPage() {
   const [categories, setCategories] = useState([]);
@@ -98,7 +99,7 @@ function RecipesPage() {
         <br />
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <Spinner aria-label="Default status example" />
       ) : (
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
@@ -121,7 +122,6 @@ function RecipesPage() {
                   />
                 </button>
               </div>
-
               <Button
                 style={{ backgroundColor: "#fe5b85" }}
                 onClick={() =>

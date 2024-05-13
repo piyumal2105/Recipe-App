@@ -37,3 +37,15 @@ export const addFavorite = async (req, res) => {
     res.status(500).send("Error saving the recipe: " + error.message);
   }
 };
+
+export const getAllFavourite = async (req, res) => {
+  try {
+    const favouriteReceipe = await Receipe.find();
+    res.status(200).json(favouriteReceipe);
+    console.log(favouriteReceipe);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to fetch product", error: error.message });
+  }
+};

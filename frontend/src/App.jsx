@@ -12,6 +12,7 @@ import RecipesPage from "./pages/RecipesPage/RecipesPage";
 import Header from "./components/Header/Header";
 import FooterComponent from "./components/Footer/Footer";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import FavoutiteRecipesPage from "./pages/RecipesPage/FavoutiteRecipesPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/recipes" element={<RecipesPage />} />
+        <Route path="/favouriterecipes" element={<FavoutiteRecipesPage />} />
         <Route element={<PrivateRoute />}>
           {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
         </Route>

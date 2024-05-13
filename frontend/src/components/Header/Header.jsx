@@ -93,7 +93,7 @@ function Header() {
           <Link to="/recipes">Recipes</Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/projects">Favourite</Link>
+          <Link to="/favouriterecipes">Favourite</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

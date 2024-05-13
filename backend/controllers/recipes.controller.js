@@ -52,7 +52,6 @@ export const getAllFavourite = async (req, res) => {
 
 export const removeFavourite = async (req, res) => {
   const _id = req.params.id;
-
   try {
     const receipeRemove = await Receipe.findByIdAndDelete(_id);
 

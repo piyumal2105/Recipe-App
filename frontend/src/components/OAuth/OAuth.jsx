@@ -3,12 +3,13 @@ import React from "react";
 import { Button } from "flowbite-react";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import { app } from "../../../firebase";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../../app/user/user.Slice.js";
 import { useNavigate } from "react-router-dom";
 
 function OAuth() {
-  const auth = getAuth();
+  const auth = getAuth(app);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleGoogleClick = async () => {

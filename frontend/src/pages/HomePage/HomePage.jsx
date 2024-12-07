@@ -71,13 +71,12 @@ function HomePage() {
                 theme === "dark" ? "text-gray-400" : "text-gray-600"
               }`}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              vitae enim pharetra, venenatis nunc eget, finibus est. Proin
-              velit.
+              Discover a world of flavors with our recipe app! Whether you are a
+              seasoned chef or a kitchen newbie, explore a diverse collection of
+              recipes tailored to your taste. From quick meals to gourmet
+              dishes, plan, share, and savor your culinary journey with ease.
+              Your perfect recipe companion awaits!
             </p>
-            <button className="mt-6 bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600">
-              Create New Recipe
-            </button>
           </div>
         </div>
       </div>

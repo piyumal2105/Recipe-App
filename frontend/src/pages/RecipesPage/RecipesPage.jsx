@@ -14,13 +14,12 @@ function RecipesPage() {
   const [selectedCategoryDescription, setSelectedCategoryDescription] =
     useState("");
   const [activeFilter, setActiveFilter] = useState(null);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/receipe/getAllRecipes"
-        );
+        const response = await axios.get(`${apiUrl}/receipe/getAllRecipes`);
         setCategories(response.data.categories);
         setLoading(false);
       } catch (error) {
@@ -40,7 +39,8 @@ function RecipesPage() {
     } = category;
     try {
       await axios.post(
-        "http://localhost:3001/receipe/addfavourite",
+        // "http://localhost:3001/receipe/addfavourite",
+        `${apiUrl}/receipe/addfavourite`,
         {
           idCategory: idCategory,
           strCategory: strCategory,

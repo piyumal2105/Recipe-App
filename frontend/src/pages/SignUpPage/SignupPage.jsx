@@ -10,6 +10,7 @@ function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     if (e.target.id === "confirmPassword") {
@@ -40,7 +41,7 @@ function SignUpPage() {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch(`${apiUrl}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

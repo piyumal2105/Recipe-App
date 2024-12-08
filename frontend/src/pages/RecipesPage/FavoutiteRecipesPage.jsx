@@ -19,16 +19,15 @@ function FavoutiteRecipesPage() {
     setOpenModal(true);
   };
 
-  const apiUrl = import.meta.env.VITE_API_URL;
-
-  // "http://localhost:3001/receipe/favouriterecipe"
-
   useEffect(() => {
     const fetchFavoriteRecipes = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/receipe/favouriterecipe`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          "http://localhost:3001/receipe/favouriterecipe",
+          {
+            withCredentials: true,
+          }
+        );
         setFavoriteRecipes(response.data); // Assuming response.data is an array of favorite recipes
         setLoading(false);
       } catch (error) {
@@ -42,7 +41,7 @@ function FavoutiteRecipesPage() {
 
   const handleDeleteClick = async (_id) => {
     try {
-      await axios.delete(`${apiUrl}/receipe/delete/${_id}`);
+      await axios.delete(`http://localhost:3001/receipe/delete/${_id}`);
       setDeletedRecipeId(_id);
       toast.success("Successfully remove from the favorite!");
     } catch (error) {

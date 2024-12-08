@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://recipe-app-backend-0jta.onrender.com",
+        target: "http://localhost:3001",
         secure: false,
       },
     },

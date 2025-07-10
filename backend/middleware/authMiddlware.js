@@ -5,17 +5,27 @@ const authMiddleware = async (req, res, next) => {
   const userCookie = req.cookies.assess_token;
 
   try {
-    if (!userCookie) throw new Error("Unauthorized");
+    if (!userCookie) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized - No token provided" });
+    }
 
     jwt.verify(userCookie, process.env.SECRET_KEY, (error, user) => {
-      if (error) throw new Error("Unauthorized");
+      if (error) {
+        return res
+          .status(401)
+          .json({ message: "Unauthorized - Invalid token" });
+      }
 
       req.user = user.id;
-
       next();
     });
   } catch (error) {
-    throw new Error(error.message);
+    // Use your error handler or send a response
+    return res
+      .status(401)
+      .json({ message: "Unauthorized - Authentication failed" });
   }
 };
 
